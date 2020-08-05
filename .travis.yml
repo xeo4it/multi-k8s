@@ -10,15 +10,15 @@ script:
     - docker run -e CI=true xeo4it/react-test npm test
 
 after_success:
-    - docker build -t xeo4it/multi-client ./client
-    - docker build -t xeo4it/multi-nginx ./nginx
-    - docker build -t xeo4it/multi-server ./server
-    - docker build -t xeo4it/multi-worker ./worker
+    - docker build -t dongimmi/multi-client ./client
+    - docker build -t dongimmi/multi-nginx ./nginx
+    - docker build -t dongimmi/multi-server ./server
+    - docker build -t dongimmi/multi-worker ./worker
     # Log in to the docker CLI
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     # Take those images and push them to docker hub
-    - docker push xeo4it/multi-client
-    - docker push xeo4it/multi-nginx
-    - docker push xeo4it/multi-server
-    - docker push xeo4it/multi-worker
+    - docker push dongimmi/multi-client
+    - docker push dongimmi/multi-nginx
+    - docker push dongimmi/multi-server
+    - docker push dongimmi/multi-worker
 
