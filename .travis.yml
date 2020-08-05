@@ -1,0 +1,24 @@
+language: generic
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t xeo4it/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+    - docker run -e CI=true xeo4it/react-test npm test
+
+after_success:
+    - docker build -t xeo4it/multi-client ./client
+    - docker build -t xeo4it/multi-nginx ./nginx
+    - docker build -t xeo4it/multi-server ./server
+    - docker build -t xeo4it/multi-worker ./worker
+    # Log in to the docker CLI
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --passwrod-stdin
+    # Take those images and push them to docker hub
+    - docker push xeo4it/multi-client
+    - docker push xeo4it/multi-nginx
+    - docker push xeo4it/multi-server
+    - docker push xeo4it/multi-worker
+
