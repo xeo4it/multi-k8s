@@ -22,3 +22,10 @@ after_success:
     - docker push dongimmi/multi-server
     - docker push dongimmi/multi-worker
 
+region: us-east-2
+app: multi-docker
+env: MultiDocker-env
+bucket_name: elasticbeanstalk-us-east-2-450375530402
+bucket_path: docker-multi
+access_key_id: $AWS_ACCESS_KEY
+secret_access_key: $AWS_SECRET_KEY    

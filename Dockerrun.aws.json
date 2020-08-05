@@ -1,0 +1,41 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "region":
+    "containerDefinitions":[
+        {
+            "name":"client",
+            "image":"dongimmi/multi-client",
+            "hostname":"client",
+            "essential":false
+
+        },
+        {
+            "name":"server",
+            "image":"dongimmi/multi-server",
+            "hostname":"api",
+            "essential":false
+        },
+        {
+            "name":"worker",
+            "image":"dongimmi/multi-worker",
+            "hostname":"worker",
+            "essential":false
+        },
+        {
+            "name":"nginx",
+            "image":"dongimmi/multi-nginx",
+            "essential":true,
+            "portMappings": [
+                {
+                    "hostPort":80,
+                    "containerPort":80
+                }
+            ],
+            "links":["client", "server"]
+        }
+    ]
+
+    
+
+
+}
