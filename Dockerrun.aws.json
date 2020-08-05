@@ -1,6 +1,5 @@
 {
     "AWSEBDockerrunVersion": 2,
-    "region":
     "containerDefinitions":[
         {
             "name":"client",
