@@ -18,7 +18,7 @@ before_install:
     - docker build -t dongimmi/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-    - docker run -e CI=true dongimmi/docker-react npm run test
+    - docker run -e CI=true dongimmi/react-test npm run test
 
 deploy:
     provider: script
